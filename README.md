@@ -60,3 +60,18 @@ requirements.txt                    # Python dependencies
 ## Reproducibility
 
 Run the command above from the repository root. The script regenerates metrics, predictions and charts locally in `outputs/`; generated outputs are not committed by default. The GitHub Actions validation workflow checks the project on repository updates.
+
+## Business insights
+
+- The contemporaneous driver nowcast reports **R² 0.810** and **MAE of approximately GHS 1.67m**. However, it uses same-month financial drivers and is not a genuine advance forecast.
+- The one-month-ahead lagged-driver model reports **R² 0.291** and **MAE of approximately GHS 3.26m**.
+- The persistence benchmark has **MAE of approximately GHS 4.15m**. The lagged model therefore reduces MAE by roughly **21%** on this particular held-out period.
+- The gap between the nowcast and the ex-ante forecast illustrates why information availability matters: a strong estimate using current-month accounting data should not be presented as a forecast made before the month begins.
+
+## Practical recommendations
+
+1. Use the contemporaneous model only as a driver-based estimate when same-month inputs are already available or independently forecast.
+2. For planning, focus on the one-month-ahead model and compare it with persistence and seasonal/statistical baselines.
+3. Extend the history and perform rolling-origin backtesting across multiple forecast windows.
+4. Investigate forecast errors around material movements in funding costs, lending yields, impairment and operating expenses.
+5. Document when each input becomes available; a forecast is only valid if its features would genuinely be known at the forecast date.
