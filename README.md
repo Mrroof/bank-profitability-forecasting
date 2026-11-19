@@ -1,29 +1,48 @@
-# Bank Profitability Driver Analysis Using Linear Regression
+# Bank Profitability Driver Analysis
+
+> **Portfolio case study · Python · pandas · scikit-learn · Matplotlib**
+
+## Executive summary
+This project investigates how bank income, funding costs, operating expenses and credit impairment relate to monthly profit before tax. It demonstrates a chronological model evaluation workflow and comparison with a simple persistence benchmark.
 
 ## Business question
-How are net interest income, fee income, operating expenses, credit impairment and key balance-sheet/pricing indicators associated with monthly profit before tax?
+How do net interest income, fee income, operating expenses, credit impairment, deposit growth, loan growth, lending yield and deposit cost relate to monthly profit before tax?
 
-## Data notice
-`data/bank_profitability_demo.csv` is **synthetic demonstration data**. It is not sourced from Absa, GCB or any other bank. Results are not the user's original project results and must not replace them in a CV.
+## Demonstration result
+<image src="docs/profitability-metrics.svg" alt="Synthetic demonstration model evaluation metrics" />
 
-## Method
-1. Validate and sort the monthly observations.
+| Metric | Demo result |
+|---|---:|
+| R-squared | 0.8096 |
+| Mean absolute error | GHS 1.67m |
+| Root mean squared error | GHS 1.98m |
+| Persistence baseline MAE | GHS 4.15m |
+
+The demonstration model improves on the persistence baseline MAE. These results come only from the synthetic CSV in this repository.
+
+## Workflow
+1. Validate and sort monthly records.
 2. Use a chronological 80/20 train/test split.
-3. Fit a linear regression using accounting and business drivers.
-4. Compare the estimates with a persistence baseline.
-5. Report R-squared, MAE and RMSE.
+3. Fit a linear regression using financial and business drivers.
+4. Compare held-out estimates with a persistence baseline.
+5. Export metrics, predictions, a comparison chart and model notes.
 
 ## Important modelling distinction
-The revised demonstration model is a **driver-based estimate/nowcast**, not a fully ex-ante forecast: net interest income and other accounting drivers must be available as forecasts or estimates at prediction time. A production forecast should forecast those drivers separately using information available before the target month.
+This implementation is a **driver-based estimate/nowcast**, not a fully ex-ante forecast. Net interest income and other accounting drivers must already be available as estimates at prediction time. A genuine forward forecast should separately forecast each driver using only information available before the target period.
 
-## Run
+## Run locally
 ```bash
 pip install -r requirements.txt
 python src/forecast_profitability.py
 ```
 
-## Outputs
-Metrics, held-out predictions, an actual-versus-estimated chart and model notes are written to `outputs/`.
+Generated files are written to `outputs/`.
 
-## Limitations
-Model performance is dataset-specific. Do not assume this demonstration run will reproduce previously reported metrics. For any CV metrics, use only the original dataset, code and test results that generated them.
+## Repository structure
+- `data/` — synthetic monthly demonstration dataset
+- `src/` — analysis and modelling script
+- `docs/` — portfolio chart
+- `.github/workflows/` — automated validation
+
+## Limitations and responsible use
+The dataset is synthetic and does not represent Absa, GCB or any other bank. The metrics are not the user's original project results and should not be presented as real-bank performance. Model fit on synthetic data does not establish generalisation to live banking data. For a production model, validate data lineage, feature availability, out-of-time performance, residuals, stability and business assumptions.
