@@ -1,18 +1,20 @@
-# Bank Profitability Forecasting Using Linear Regression
+# Bank Profitability Driver Analysis Using Linear Regression
 
 ## Business question
-How are deposit growth, loan growth, lending yields, deposit costs, fee income, operating expenses and credit impairment associated with monthly profit before tax?
+How are net interest income, fee income, operating expenses, credit impairment and key balance-sheet/pricing indicators associated with monthly profit before tax?
 
 ## Data notice
 `data/bank_profitability_demo.csv` is **synthetic demonstration data**. It is not sourced from Absa, GCB or any other bank. Results are not the user's original project results and must not replace them in a CV.
 
 ## Method
-1. Load and validate monthly data.
-2. Conduct exploratory analysis.
-3. Use a chronological train/test split.
-4. Fit a linear regression model.
-5. Compare it with a persistence baseline.
-6. Report R-squared, MAE and RMSE.
+1. Validate and sort the monthly observations.
+2. Use a chronological 80/20 train/test split.
+3. Fit a linear regression using accounting and business drivers.
+4. Compare the estimates with a persistence baseline.
+5. Report R-squared, MAE and RMSE.
+
+## Important modelling distinction
+The revised demonstration model is a **driver-based estimate/nowcast**, not a fully ex-ante forecast: net interest income and other accounting drivers must be available as forecasts or estimates at prediction time. A production forecast should forecast those drivers separately using information available before the target month.
 
 ## Run
 ```bash
@@ -20,5 +22,8 @@ pip install -r requirements.txt
 python src/forecast_profitability.py
 ```
 
-## Important
+## Outputs
+Metrics, held-out predictions, an actual-versus-estimated chart and model notes are written to `outputs/`.
+
+## Limitations
 Model performance is dataset-specific. Do not assume this demonstration run will reproduce previously reported metrics. For any CV metrics, use only the original dataset, code and test results that generated them.
