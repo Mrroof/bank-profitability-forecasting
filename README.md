@@ -1,3 +1,5 @@
+[![Portfolio validation](https://github.com/Mrroof/bank-profitability-forecasting/actions/workflows/portfolio-validation.yml/badge.svg)](https://github.com/Mrroof/bank-profitability-forecasting/actions)
+
 # Bank Profitability Driver Analysis
 
 > **Portfolio case study · Python · pandas · scikit-learn · Matplotlib**
@@ -9,7 +11,7 @@ This project investigates how bank income, funding costs, operating expenses and
 How do net interest income, fee income, operating expenses, credit impairment, deposit growth, loan growth, lending yield and deposit cost relate to monthly profit before tax?
 
 ## Demonstration result
-<image src="docs/profitability-metrics.svg" alt="Synthetic demonstration model evaluation metrics" />
+![Synthetic demonstration model evaluation metrics](docs/profitability-metrics.svg)
 
 | Metric | Demo result |
 |---|---:|
