@@ -46,3 +46,17 @@ Generated files are written to `outputs/`, including `model_metrics.csv` and `ex
 
 ## Important limitations
 The dataset contains only 72 synthetic monthly observations. Results are illustrative and should not be treated as evidence of live-bank forecasting performance. The lagged model has a small training sample and needs more history, rolling-origin backtesting, residual diagnostics, feature stability checks and comparison with seasonal or statistical time-series baselines before practical use. The dataset does not represent Absa, GCB or any other bank.
+
+## Repository structure
+
+```text
+data/bank_profitability_demo.csv   # Synthetic monthly financial drivers
+src/forecast_profitability.py      # Nowcast and ex-ante forecast workflow
+docs/profitability-metrics.svg     # Model evaluation chart
+requirements.txt                    # Python dependencies
+.github/workflows/                  # Automated repository validation
+```
+
+## Reproducibility
+
+Run the command above from the repository root. The script regenerates metrics, predictions and charts locally in `outputs/`; generated outputs are not committed by default. The GitHub Actions validation workflow checks the project on repository updates.
